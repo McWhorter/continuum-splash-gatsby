@@ -1,0 +1,15 @@
+@import url("https://use.typekit.net/ibg3llw.css");
+
+// @use "@material/floating-label/mdc-floating-label";
+// @use "@material/line-ripple/mdc-line-ripple";
+// @use "@material/notched-outline/mdc-notched-outline";
+// @use "@material/textfield";
+
+// @include textfield;
+
+:root {
+  --fontFamily-sans: canada-type-gibson, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --fontFamily-serif: "Merriweather", "Georgia", Cambria, "Times New Roman", Times, serif;
+  --font-body: var(--fontFamily-serif);
+  --font-heading: var(--fontFamily-sans);
+}
