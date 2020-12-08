@@ -152,7 +152,7 @@ h3 {
 
 .signup {
   width: 52%;
-  padding: rem-calc(28 44 22);
+  padding: rem-calc(28 44 32);
   background-color: var(--color-blue);
   color: var(--color-cream);
 }
@@ -210,10 +210,10 @@ h3 {
 .MailchimpForm {
   .MailchimpFormComponents {
     display: flex;
-    margin: rem-calc(0 -10);
+    margin: rem-calc(0 -5);
 
     & > * {
-      margin: rem-calc(0 10);
+      margin: rem-calc(0 5);
     }
   }
 
@@ -231,8 +231,9 @@ h3 {
   }
 
   .MuiButton-root {
-    font-weight: 600;
     min-width: rem-calc(125);
+    margin-left: rem-calc(10);
+    font-weight: 600;
     outline: 1px solid var(--color-cream);
     outline-offset: -1px;
 
