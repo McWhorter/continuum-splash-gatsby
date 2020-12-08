@@ -12,7 +12,11 @@ const Home = ({ data }) => {
   const slides = []
   Object.values(node.imageGallery.images).forEach(image => {
     if (image) {
-      slides.push(<img key={image.id} src={image.sourceUrl} alt="" />)
+      slides.push(
+        <div className="BrainhubCarouselSlide" key={image.id} style={{ backgroundImage: `url(${image.sourceUrl})`}}>
+          <img src={image.sourceUrl} alt="" />
+        </div>
+      )
     }
   })
 

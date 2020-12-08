@@ -23,11 +23,19 @@ $breakpoint-lg: rem-calc(992);
   --fontFamily-sans-alt: termina, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-body: var(--fontFamily-sans);
   --font-heading: var(--fontFamily-sans-alt);
-  --fontSize-root: $rem-base;
+  --fontSize-root: #{$rem-base};
   --lineHeight-normal: 1.5;
   --spacing-1: #{rem-calc(24)};
   --spacing-2: #{rem-calc(44)};
   --spacing-3: #{rem-calc(96)};
+
+  @media (min-width: 1366px) {
+    --fontSize-root: 1.1713vw;
+  }
+
+  @media (min-width: 1920px) {
+    --fontSize-root: 22.489px;
+  }
 }
 
 *,
@@ -73,23 +81,6 @@ h3 {
   font-family: var(--font-heading);
 }
 
-h1 {
-  position: relative;
-  z-index: 2;
-  font-weight: 500;
-  font-size: rem-calc(18);
-  color: var(--color-cream);
-
-  strong {
-    font-weight: bold;
-  }
-
-  @media (min-width: $breakpoint-md) {
-    max-width: rem-calc(512);
-    font-size: rem-calc(24);
-  }
-}
-
 h2 {
   font-weight: normal;
   font-size: rem-calc(18);
@@ -123,13 +114,82 @@ h3 {
   top: 0;
   left: 0;
   right: 0;
-  padding-top: var(--spacing-2);
+  min-height: rem-calc(125);
+  padding-top: var(--spacing-1);
   padding-bottom: rem-calc(12);
   background-color: var(--color-blue);
-  
+
   @media (min-width: $breakpoint-md) {
+    min-height: 0;
     padding-top: var(--spacing-3);
     background-color: transparent;
+  }
+}
+
+.fifty-seven-logo {
+  width: rem-calc(192);
+  height: rem-calc(43);
+
+  @media (min-width: $breakpoint-md) {
+    width: rem-calc(340);
+    height: rem-calc(77);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Main Heading
+// -----------------------------------------------------------------------------
+
+.main__heading {
+  position: relative;
+  z-index: 5;
+  max-width: rem-calc(272);
+  font-weight: 500;
+  font-size: rem-calc(18);
+  color: var(--color-cream);
+  transform: translateY(-2.75rem);
+
+  strong {
+    font-weight: bold;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    transform: none;
+    max-width: rem-calc(512);
+    font-size: rem-calc(24);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Hero Carousel
+// -----------------------------------------------------------------------------
+
+.section__carousel {
+  position: relative;
+  z-index: 1;
+
+  @media (min-width: $breakpoint-md) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  
+    img {
+      visibility: hidden;
+    }
+  }
+}
+
+.BrainhubCarouselSlide {
+  display: none;
+  width: 100vw;
+  height: 85vh;
+  background-position: center bottom;
+  background-size: cover;
+
+  @media (min-width: $breakpoint-md) {
+    display: block;
   }
 }
 
@@ -152,6 +212,7 @@ h3 {
 
 .signup {
   width: 52%;
+  min-height: 19vh;
   padding: rem-calc(28 44 32);
   background-color: var(--color-blue);
   color: var(--color-cream);
@@ -159,13 +220,21 @@ h3 {
 
 .information {
   order: -1;
-  flex-grow: 1;
+  width: 48%;
+  min-height: 15vh;
   padding: rem-calc(28 44 22);
   background-color: var(--color-green);
 
   .continuum-logo {
     display: block;
     margin-bottom: rem-calc(2);
+    width: rem-calc(130);
+    height: rem-calc(13);
+    
+    @media (min-width: $breakpoint-md) {
+      width: rem-calc(175);
+      height: rem-calc(18);
+    }
   }
 
   .footer__address {
@@ -180,26 +249,12 @@ h3 {
     font-size: rem-calc(12);
     letter-spacing: 0.04em;
     color: var(--color-cream);
-
-    img {
-      padding-right: rem-calc(8);
-    }
   }
-}
 
-// -----------------------------------------------------------------------------
-// Hero Carousel
-// -----------------------------------------------------------------------------
-
-.section__carousel {
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  right: 0;
-
-  img {
-    width: 100%;
+  .lcor-logo {
+    width: rem-calc(43);
+    height: rem-calc(11);
+    padding-right: rem-calc(8);
   }
 }
 
@@ -213,6 +268,7 @@ h3 {
     margin: rem-calc(0 -5);
 
     & > * {
+      flex-grow: 1;
       margin: rem-calc(0 5);
     }
   }
@@ -242,5 +298,3 @@ h3 {
     }
   }
 }
-
-

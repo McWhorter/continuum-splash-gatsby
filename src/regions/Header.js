@@ -4,7 +4,7 @@ import logo from '../images/57-bank-street-logo.svg'
 const Header = () => (
   <header className="region__header">
     <div className="container">
-      <img src={logo} alt="57 Bank Street" />
+      <img className="fifty-seven-logo" src={logo} alt="57 Bank Street" />
     </div>
   </header>
 )
