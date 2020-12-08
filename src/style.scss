@@ -1,15 +1,245 @@
-@import url("https://use.typekit.net/ibg3llw.css");
+@import url('https://use.typekit.net/ibg3llw.css');
+@import 'rem-calc';
 
-// @use "@material/floating-label/mdc-floating-label";
-// @use "@material/line-ripple/mdc-line-ripple";
-// @use "@material/notched-outline/mdc-notched-outline";
-// @use "@material/textfield";
+// -----------------------------------------------------------------------------
+// Variables
+// -----------------------------------------------------------------------------
 
-// @include textfield;
+$breakpoint-xs: rem-calc(576);
+$breakpoint-md: rem-calc(768);
+$breakpoint-lg: rem-calc(992);
+
+// -----------------------------------------------------------------------------
+// Root
+// -----------------------------------------------------------------------------
 
 :root {
+  --color-blue: #27384a;
+  --color-gold: #d9cc98;
+  --color-cream: #fff6e8;
+  --color-green: #aebbb1;
+  --color-text: var(--color-blue);
   --fontFamily-sans: canada-type-gibson, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --fontFamily-serif: "Merriweather", "Georgia", Cambria, "Times New Roman", Times, serif;
-  --font-body: var(--fontFamily-serif);
-  --font-heading: var(--fontFamily-sans);
+  --fontFamily-sans-alt: termina, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-body: var(--fontFamily-sans);
+  --font-heading: var(--fontFamily-sans-alt);
+  --fontSize-root: $rem-base;
+  --lineHeight-normal: 1.5;
+  --spacing-1: #{rem-calc(24)};
+  --spacing-2: #{rem-calc(44)};
+  --spacing-3: #{rem-calc(96)};
 }
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+// -----------------------------------------------------------------------------
+// Structure
+// -----------------------------------------------------------------------------
+
+html {
+  font-size: var(--fontSize-root);
+  line-height: var(--lineHeight-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+// -----------------------------------------------------------------------------
+// Elements
+// -----------------------------------------------------------------------------
+
+p {
+  margin: 0;
+}
+
+// -----------------------------------------------------------------------------
+// Headers
+// -----------------------------------------------------------------------------
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  line-height: 1.25;
+  font-family: var(--font-heading);
+}
+
+h1 {
+  position: relative;
+  z-index: 2;
+  font-weight: 500;
+  font-size: rem-calc(18);
+  color: var(--color-cream);
+
+  strong {
+    font-weight: bold;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    max-width: rem-calc(512);
+    font-size: rem-calc(24);
+  }
+}
+
+h2 {
+  font-weight: normal;
+  font-size: rem-calc(18);
+  margin-bottom: rem-calc(18);
+
+  strong {
+    font-weight: bold;
+  }
+}
+
+h3 {
+  font-size: rem-calc(13);
+  margin-bottom: 1em;
+}
+
+// -----------------------------------------------------------------------------
+// Container
+// -----------------------------------------------------------------------------
+
+.container {
+  padding: 0 var(--spacing-2);
+}
+
+// -----------------------------------------------------------------------------
+// Region Header
+// -----------------------------------------------------------------------------
+
+.region__header {
+  position: relative;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-top: var(--spacing-2);
+  padding-bottom: rem-calc(12);
+  background-color: var(--color-blue);
+  
+  @media (min-width: $breakpoint-md) {
+    padding-top: var(--spacing-3);
+    background-color: transparent;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Region Footer
+// -----------------------------------------------------------------------------
+
+.region__footer {
+  position: fixed;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .wrapper {
+    display: flex;
+    align-items: flex-end;
+  }
+}
+
+.signup {
+  width: 52%;
+  padding: rem-calc(28 44 22);
+  background-color: var(--color-blue);
+  color: var(--color-cream);
+}
+
+.information {
+  order: -1;
+  flex-grow: 1;
+  padding: rem-calc(28 44 22);
+  background-color: var(--color-green);
+
+  .continuum-logo {
+    display: block;
+    margin-bottom: rem-calc(2);
+  }
+
+  .footer__address {
+    font-family: var(--font-heading);
+    margin-bottom: rem-calc(12);
+    font-size: rem-calc(18);
+  }
+  
+  .footer__copyright {
+    display: flex;
+    align-items: center;
+    font-size: rem-calc(12);
+    letter-spacing: 0.04em;
+    color: var(--color-cream);
+
+    img {
+      padding-right: rem-calc(8);
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Hero Carousel
+// -----------------------------------------------------------------------------
+
+.section__carousel {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  img {
+    width: 100%;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Mailchimp Form
+// -----------------------------------------------------------------------------
+
+.MailchimpForm {
+  .MailchimpFormComponents {
+    display: flex;
+    margin: rem-calc(0 -10);
+
+    & > * {
+      margin: rem-calc(0 10);
+    }
+  }
+
+  .MuiFilledInput-root {
+    border-radius: 0 !important;
+  }
+
+  .MuiFilledInput-underline {
+    &:after {
+      display: none;
+    }
+    &:before {
+      display: none;
+    }
+  }
+
+  .MuiButton-root {
+    font-weight: 600;
+    min-width: rem-calc(125);
+    outline: 1px solid var(--color-cream);
+    outline-offset: -1px;
+
+    &:hover {
+      background-color: #b5aa7c !important;
+    }
+  }
+}
+
+

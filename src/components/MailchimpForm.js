@@ -1,65 +1,116 @@
 import React from 'react'
-import * as yup from 'yup';
+
+import * as yup from 'yup'
+import { useFormik } from 'formik'
 
 import MailchimpURL from '../third-party/mailchimp'
 import MailchimpSubscribe from 'react-mailchimp-subscribe'
 
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import TextField from '@material-ui/core/TextField';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
+import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+
+// Turn on debug mode to enable faker data form population.
+import faker from 'faker'
+const debug = false
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: `inherit`,
+    button: {
+      fontFamily: `var(--font-heading)`,
+      backgroundColor: `var(--color-gold)`,
+      color: `var(--color-blue)`,
+    },
+    shape: {
+      borderRadius: 0,
+    }
+  },
+})
+
+const textfieldStyles = makeStyles({
+  root: {
+    backgroundColor: `var(--color-cream)`,
+    color: `var(--color-blue)`,
+  },
+})
+
+const buttonStyles = makeStyles({
+  root: {
+    borderRadius: 0,
+    fontFamily: `var(--font-heading)`,
+    backgroundColor: `var(--color-gold)`,
+    color: `var(--color-blue)`,
+  }
+})
+
+const validationSchema = yup.object({
+  name: yup.string().required(),
+  email: yup.string().email().required(),
+})
 
 const SignupForm = ({ status, message, onValidated }) => {
-  let name, email, phone;
+  const textfieldClasses = textfieldStyles()
+  const buttonClasses = buttonStyles()
 
-  let schema = yup.object().shape({
-    name: yup.string().required(`Required`),
-    email: yup.string().email(`Invalid email address`).required(`Required`),
+  const formik = useFormik({
+    initialValues: {
+      name: debug ? faker.name.findName() : ``,
+      email: debug ? faker.internet.email() : ``,
+      phone: debug ? faker.phone.phoneNumber() : ``,
+    },
+    validationSchema,
+    onSubmit: values => onValidated(values)
   })
 
-  const submit = () => schema.isValid({ name, email }).then(
-    onValidated({
-      NAME: name.value,
-      EMAIL: email.value,
-      PHONE: phone.value,
-    })
-  )
-
   return (
-    <Container maxWidth="xs">
-      <CssBaseline />
-      { console.log(status, message || '') }
-      <form autoComplete="off">
-        <Grid container spacing={2}>
+    <ThemeProvider theme={theme}>
+      <form className="MailchimpForm" onSubmit={formik.handleSubmit}>
+        { console.log(status, message || status) }
+        <h3>Apply Now</h3>
+        <div className="MailchimpFormComponents">
           <TextField
-            name="NAME"
-            variant="filled"
-            required
-            fullWidth
+            name="name"
             id="name"
             label="Name"
+            size="small"
+            variant="filled"
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            className={textfieldClasses.root}
+            error={formik.touched.name && Boolean(formik.errors.name)}
           />
           <TextField
-            name="EMAIL"
-            variant="outlined"
-            required
-            fullWidth
+            name="email"
             id="email"
             label="Email"
+            size="small"
+            variant="filled"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            className={textfieldClasses.root}
+            error={formik.touched.email && Boolean(formik.errors.email)}
           />
           <TextField
-            name="PHONE"
-            variant="standard"
-            fullWidth
+            name="phone"
             id="phone"
             label="Phone"
-            type="number"
+            size="small"
+            variant="filled"
+            value={formik.values.phone}
+            onChange={formik.handleChange}
+            className={textfieldClasses.root}
           />
-        </Grid>
+          <Button
+            type="submit"
+            disableElevation
+            className={buttonClasses.root}
+          >
+            Submit
+          </Button>
+        </div>
       </form>
-    </Container>
+    </ThemeProvider>
   );
 };
 
@@ -70,7 +121,12 @@ const MailchimpForm = () => (
       <SignupForm
         status={status}
         message={message}
-        onValidated={formData => subscribe(formData)}
+        onValidated={formData => subscribe({
+          FNAME: formData.name.split(' ')[0],
+          LNAME: formData.name.split(' ')[1],
+          EMAIL: formData.email,
+          PHONE: formData.phone,
+        })}
       />
     )}
   />
