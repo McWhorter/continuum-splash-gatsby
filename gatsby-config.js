@@ -25,7 +25,6 @@ module.exports = {
        */
       resolve: `gatsby-source-wordpress-experimental`,
       options: {
-        useACF: true,
         // the only required plugin option for WordPress is the GraphQL url.
         url: process.env.WPGRAPHQL_URL || `https://live-continuum-splash.pantheonsite.io/graphql`,
       },
