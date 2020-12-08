@@ -27,7 +27,7 @@ module.exports = {
       options: {
         useACF: true,
         // the only required plugin option for WordPress is the GraphQL url.
-        url: process.env.WPGRAPHQL_URL || `http://continuum-splash-wp.local/graphql`,
+        url: process.env.WPGRAPHQL_URL || `https://live-continuum-splash.pantheonsite.io/graphql`,
       },
     },
 
