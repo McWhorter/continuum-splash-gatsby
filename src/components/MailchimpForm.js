@@ -11,7 +11,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 // Turn on debug mode to enable faker data form population.
 import faker from 'faker'
-const debug = true
+const debug = false
 
 const theme = createMuiTheme({
   typography: {
