@@ -60,7 +60,7 @@ html {
 body {
   font-family: var(--font-body);
   font-size: 1rem;
-  background-color: var(--color-green);
+  background-color: var(--color-blue);
   color: var(--color-text);
 }
 
@@ -129,14 +129,12 @@ h3 {
   top: 0;
   left: 0;
   right: 0;
-  min-height: rem-calc(125);
   padding-top: var(--spacing-1);
-  padding-bottom: rem-calc(12);
   background-color: var(--color-blue);
-
+  
   @media (min-width: $breakpoint-md) {
-    min-height: 0;
     padding-top: var(--spacing-3);
+    padding-bottom: rem-calc(12);
     background-color: transparent;
   }
 }
@@ -156,21 +154,18 @@ h3 {
 // -----------------------------------------------------------------------------
 
 .main__heading {
-  position: absolute;
+  position: relative;
   z-index: 5;
   max-width: rem-calc(272);
   font-weight: 500;
   font-size: rem-calc(18);
   color: var(--color-cream);
-  transform: translateY(-2.75rem);
 
   strong {
     font-weight: bold;
   }
 
   @media (min-width: $breakpoint-md) {
-    position: relative;
-    transform: none;
     max-width: rem-calc(512);
     font-size: rem-calc(24);
   }
@@ -202,11 +197,12 @@ h3 {
 .signup {
   position: relative;
   min-height: 19vh;
-  padding: rem-calc(28 44 32);
+  padding: rem-calc(14 44 32);
   background-color: var(--color-blue);
   color: var(--color-cream);
-
+  
   @media (min-width: $breakpoint-md) {
+    padding-top: rem-calc(28);
     width: 65%;
   }
 
@@ -231,7 +227,7 @@ h3 {
 
   .continuum-logo {
     display: block;
-    margin-bottom: rem-calc(2);
+    margin-bottom: rem-calc(7);
     width: rem-calc(130);
     height: rem-calc(13);
     
@@ -267,6 +263,10 @@ h3 {
 // -----------------------------------------------------------------------------
 
 .form {
+  h3 {
+    margin-bottom: rem-calc(18);
+  }
+
   a {
     text-decoration: none;
     color: var(--color-cream);
