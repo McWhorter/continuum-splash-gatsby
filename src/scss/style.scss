@@ -1,5 +1,6 @@
 @import url('https://use.typekit.net/ibg3llw.css');
 @import 'normalize.css';
+@import 'screen-reader';
 @import 'rem-calc';
 
 // -----------------------------------------------------------------------------
@@ -99,6 +100,18 @@ h3 {
 }
 
 // -----------------------------------------------------------------------------
+// Screen Reader Utils
+// -----------------------------------------------------------------------------
+
+.sr-only {
+  @include sr-only();
+}
+
+.sr-only-focusable {
+  @include sr-only-focusable();
+}
+
+// -----------------------------------------------------------------------------
 // Container
 // -----------------------------------------------------------------------------
 
@@ -143,7 +156,7 @@ h3 {
 // -----------------------------------------------------------------------------
 
 .main__heading {
-  position: relative;
+  position: absolute;
   z-index: 5;
   max-width: rem-calc(272);
   font-weight: 500;
@@ -156,6 +169,7 @@ h3 {
   }
 
   @media (min-width: $breakpoint-md) {
+    position: relative;
     transform: none;
     max-width: rem-calc(512);
     font-size: rem-calc(24);
@@ -167,32 +181,53 @@ h3 {
 // -----------------------------------------------------------------------------
 
 .region__footer {
-  position: fixed;
+  position: relative;
   z-index: 3;
-  left: 0;
-  right: 0;
-  bottom: 0;
+
+  @media (min-width: $breakpoint-md) {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 
   .wrapper {
-    display: flex;
-    align-items: flex-end;
+    @media (min-width: $breakpoint-md) {
+      display: flex;
+      align-items: flex-end;
+    }
   }
 }
 
 .signup {
-  width: 52%;
+  position: relative;
   min-height: 19vh;
   padding: rem-calc(28 44 32);
   background-color: var(--color-blue);
   color: var(--color-cream);
+
+  @media (min-width: $breakpoint-md) {
+    width: 65%;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    width: 52%;
+  }
 }
 
 .information {
   order: -1;
-  width: 48%;
   min-height: 15vh;
   padding: rem-calc(28 44 22);
   background-color: var(--color-green);
+
+  @media (min-width: $breakpoint-md) {
+    width: 35%;
+  }
+  
+  @media (min-width: $breakpoint-lg) {
+    width: 48%;
+  }
 
   .continuum-logo {
     display: block;
@@ -231,39 +266,100 @@ h3 {
 // Mailchimp Form
 // -----------------------------------------------------------------------------
 
-.MailchimpForm {
-  .MailchimpFormComponents {
-    display: flex;
-    margin: rem-calc(0 -5);
+.form {
+  .components {
+    @media (min-width: $breakpoint-md) {
+      display: flex;
+      margin: rem-calc(0 -5);
 
-    & > * {
-      flex-grow: 1;
-      margin: rem-calc(0 5);
+      & > * {
+        flex-grow: 1;
+        margin: rem-calc(0 5);
+      }
     }
   }
 
-  .MuiFilledInput-root {
-    border-radius: 0 !important;
-  }
+  input {
+    display: block;
+    width: 100%;
+    margin-bottom: rem-calc(6);
+    height: rem-calc(30);
+    font-size: rem-calc(14);
+    line-height: 1;
+    border: none;
+    appearance: none;
+    border-radius: 0;
+    padding: 0 1em;
+    font-family: var(--font-body);
+    background-color: var(--color-cream);
+    color: var(--color-blue);
 
-  .MuiFilledInput-underline {
-    &:after {
-      display: none;
+    @media (min-width: $breakpoint-md) {
+      margin-bottom: 0;
     }
-    &:before {
-      display: none;
+
+    &::placeholder {
+      color: inherit;
+    }
+
+    &:focus {
+      outline: none;
+
+      &::placeholder {
+        opacity: 0.5;
+      } 
     }
   }
 
   .MuiButton-root {
     min-width: rem-calc(125);
-    margin-left: rem-calc(10);
+    margin-top: 10px;
+    font-size: rem-calc(12);
     font-weight: 600;
+    line-height: 1;
+    padding: rem-calc(8) 0 rem-calc(6);
     outline: 1px solid var(--color-cream);
     outline-offset: -1px;
+    
+    @media (min-width: $breakpoint-md) {
+      margin-top: 0;
+      margin-left: rem-calc(10);
+    }
 
     &:hover {
       background-color: #b5aa7c !important;
+    }
+  }
+
+  .confirmation-message {
+    position: absolute;
+    z-index: 9;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    padding: rem-calc(28 44 32);
+    font-family: var(--font-heading);
+    flex-direction: column;
+    justify-content: center;
+    transition: 0.3s linear;
+    visibility: hidden;
+    opacity: 0;
+    background-color: var(--color-blue);
+
+    h3,
+    p {
+      font-size: rem-calc(18);
+    }
+
+    h3 {
+      margin-bottom: rem-calc(8);
+    }
+
+    &.show {
+      visibility: inherit;
+      opacity: 1;
     }
   }
 }

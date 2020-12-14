@@ -17,8 +17,9 @@ class HeroCarousel extends React.Component {
       <section className="section_carousel">
         <Swiper
           effect="fade"
-          autoplay={{ delay: 5000 }}
-          pagination={{ clickable: true, bulletElement: 'button' }}
+          fadeEffect={{ crossFade: true }}
+          autoplay={{ delay: 6000 }}
+          pagination={{ clickable: true }}
         >
           {this.props.slides.map((slide, index) => (
             <SwiperSlide key={index}>{slide}</SwiperSlide>

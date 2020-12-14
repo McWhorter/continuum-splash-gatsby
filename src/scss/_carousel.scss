@@ -6,37 +6,52 @@
 @import 'swiper/components/effect-fade/effect-fade';
 
 .swiper-container {
-  position: static;
+  margin: 0 rem-calc(-44);
+  
+  @media (min-width: $breakpoint-md) {
+    position: static;
+    margin: 0 auto;
+  }
 }
 
 .swiper-wrapper {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  overflow: hidden;
-
   @media (min-width: $breakpoint-md) {
     position: fixed;
+    z-index: 1;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    width: 100vw;
+    overflow: hidden;
+  }
 
-    img {
-      visibility: hidden;
-    }
+  img {
+    width: 100%;
+    height: auto;
+    visibility: hidden;
+  }
+}
+
+.swiper-slide {
+  opacity: 0 !important;
+  width: 100% !important;
+  transition-duration: 2.5s !important;
+
+  &-active {
+    opacity: 1 !important;
   }
 }
 
 .carousel__slide {
-  display: none;
-  width: 100vw;
-  height: 85vh;
+  min-height: rem-calc(300);
   background-position: center bottom;
   background-size: cover;
 
   @media (min-width: $breakpoint-md) {
     display: block;
+    width: 100vw;
+    height: 85vh;
   }
 }
 
@@ -45,18 +60,24 @@
 // -----------------------------------------------------------------------------
 
 .swiper-pagination {
-  display: flex;
-  margin: 0 0 20px;
-  position: fixed;
+  position: absolute;
   z-index: 10;
-  right: var(--spacing-2);
-  bottom: 15vh;
+  bottom: 0;
+  right: rem-calc(14);
+  display: flex;
+  margin: 0 0 rem-calc(14);
   list-style-type: none;
+  
+  @media (min-width: $breakpoint-md) {
+    position: fixed;
+    right: var(--spacing-2);
+    bottom: 15vh;
+  }
 
   .swiper-pagination-bullet {
     outline: 0;
-    padding: 4px;
-    margin-left: 6px;
+    padding: rem-calc(4);
+    margin-left: rem-calc(6);
     border: 1px solid var(--color-cream);
     font-size: 0;
     cursor: pointer;

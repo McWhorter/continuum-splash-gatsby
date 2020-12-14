@@ -7,12 +7,11 @@ import MailchimpURL from '../third-party/mailchimp'
 import MailchimpSubscribe from 'react-mailchimp-subscribe'
 
 import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
-import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 // Turn on debug mode to enable faker data form population.
 import faker from 'faker'
-const debug = false
+const debug = true
 
 const theme = createMuiTheme({
   typography: {
@@ -28,31 +27,12 @@ const theme = createMuiTheme({
   },
 })
 
-const textfieldStyles = makeStyles({
-  root: {
-    backgroundColor: `var(--color-cream)`,
-    color: `var(--color-blue)`,
-  },
-})
-
-const buttonStyles = makeStyles({
-  root: {
-    borderRadius: 0,
-    fontFamily: `var(--font-heading)`,
-    backgroundColor: `var(--color-gold)`,
-    color: `var(--color-blue)`,
-  }
-})
-
 const validationSchema = yup.object({
   name: yup.string().required(),
   email: yup.string().email().required(),
 })
 
 const SignupForm = ({ status, message, onValidated }) => {
-  const textfieldClasses = textfieldStyles()
-  const buttonClasses = buttonStyles()
-
   const formik = useFormik({
     initialValues: {
       name: debug ? faker.name.findName() : ``,
@@ -65,49 +45,49 @@ const SignupForm = ({ status, message, onValidated }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <form className="MailchimpForm" onSubmit={formik.handleSubmit}>
-        { console.log(status, message || status) }
+      <form className="form" onSubmit={formik.handleSubmit}>
+        <div className={`confirmation-message ${status === 'success' ? 'show' : 'hide'}`}>
+          <h3>Thank you for your interest in 57 Bank St.</h3>
+          <p>We’ll notify you shortly.</p>
+        </div>
         <h3>Apply Now</h3>
-        <div className="MailchimpFormComponents">
-          <TextField
-            name="name"
-            id="name"
-            label="Name"
-            size="small"
-            variant="filled"
-            value={formik.values.name}
-            onChange={formik.handleChange}
-            className={textfieldClasses.root}
-            error={formik.touched.name && Boolean(formik.errors.name)}
-          />
-          <TextField
-            name="email"
-            id="email"
-            label="Email"
-            size="small"
-            variant="filled"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            className={textfieldClasses.root}
-            error={formik.touched.email && Boolean(formik.errors.email)}
-          />
-          <TextField
-            name="phone"
-            id="phone"
-            label="Phone"
-            size="small"
-            variant="filled"
-            value={formik.values.phone}
-            onChange={formik.handleChange}
-            className={textfieldClasses.root}
-          />
-          <Button
-            type="submit"
-            disableElevation
-            className={buttonClasses.root}
-          >
-            Submit
-          </Button>
+        <div className="components">
+          <div className="component">
+            <label className="sr-only" htmlFor="name">Name</label>
+            <input
+              name="name"
+              id="name"
+              type="text"
+              required
+              placeholder="Name"
+              value={formik.values.name}
+              onChange={formik.handleChange}
+            />
+          </div>
+          <div className="component">
+            <label className="sr-only" htmlFor="email">Email</label>
+            <input
+              name="email"
+              id="email"
+              type="text"
+              required
+              placeholder="Email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+            />
+          </div>
+          <div className="component">
+            <label className="sr-only" htmlFor="phone">Phone</label>
+            <input
+              name="phone"
+              id="phone"
+              type="text"
+              placeholder="Phone"
+              value={formik.values.phone}
+              onChange={formik.handleChange}
+            />
+          </div>
+          <Button type="submit">Submit</Button>
         </div>
       </form>
     </ThemeProvider>
