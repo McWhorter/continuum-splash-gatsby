@@ -50,7 +50,7 @@ const SignupForm = ({ status, message, onValidated }) => {
           <h3>Thank you for your interest in 57 Bank St.</h3>
           <p>We’ll notify you shortly.</p>
         </div>
-        <h3>Apply Now</h3>
+        <h3><a href="https://www.yardi.com/">Apply Now</a></h3>
         <div className="components">
           <div className="component">
             <label className="sr-only" htmlFor="name">Name</label>
@@ -87,7 +87,7 @@ const SignupForm = ({ status, message, onValidated }) => {
               onChange={formik.handleChange}
             />
           </div>
-          <Button type="submit">Submit</Button>
+          <Button type="submit">Learn More</Button>
         </div>
       </form>
     </ThemeProvider>

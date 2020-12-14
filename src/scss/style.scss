@@ -267,6 +267,15 @@ h3 {
 // -----------------------------------------------------------------------------
 
 .form {
+  a {
+    text-decoration: none;
+    color: var(--color-cream);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   .components {
     @media (min-width: $breakpoint-md) {
       display: flex;

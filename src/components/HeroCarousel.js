@@ -16,6 +16,7 @@ class HeroCarousel extends React.Component {
     return (
       <section className="section_carousel">
         <Swiper
+          loop={true}
           effect="fade"
           fadeEffect={{ crossFade: true }}
           autoplay={{ delay: 6000 }}
