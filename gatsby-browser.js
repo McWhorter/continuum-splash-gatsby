@@ -1,4 +1,4 @@
-import "./src/normalize.css"
+import "./src/scss/normalize.css"
 
 // custom CSS styles
-import "./src/style.scss"
+import "./src/scss/style.scss"

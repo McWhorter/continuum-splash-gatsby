@@ -1,0 +1,75 @@
+// -----------------------------------------------------------------------------
+// Hero Carousel
+// -----------------------------------------------------------------------------
+
+@import 'swiper/swiper';
+@import 'swiper/components/effect-fade/effect-fade';
+
+.swiper-container {
+  position: static;
+}
+
+.swiper-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  overflow: hidden;
+
+  @media (min-width: $breakpoint-md) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    img {
+      visibility: hidden;
+    }
+  }
+}
+
+.carousel__slide {
+  display: none;
+  width: 100vw;
+  height: 85vh;
+  background-position: center bottom;
+  background-size: cover;
+
+  @media (min-width: $breakpoint-md) {
+    display: block;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Hero Carousel Dots
+// -----------------------------------------------------------------------------
+
+.swiper-pagination {
+  display: flex;
+  margin: 0 0 20px;
+  position: fixed;
+  z-index: 10;
+  right: var(--spacing-2);
+  bottom: 15vh;
+  list-style-type: none;
+
+  .swiper-pagination-bullet {
+    outline: 0;
+    padding: 4px;
+    margin-left: 6px;
+    border: 1px solid var(--color-cream);
+    font-size: 0;
+    cursor: pointer;
+    transition: 0.2s ease-out;
+    -webkit-appearance: none;
+    background-color: transparent;
+
+    &:before {
+      display: none;
+    }
+
+    &-active {
+      background-color: var(--color-gold);
+    }
+  }
+}

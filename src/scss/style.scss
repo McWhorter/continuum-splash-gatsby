@@ -1,4 +1,5 @@
 @import url('https://use.typekit.net/ibg3llw.css');
+@import 'normalize.css';
 @import 'rem-calc';
 
 // -----------------------------------------------------------------------------
@@ -58,6 +59,7 @@ html {
 body {
   font-family: var(--font-body);
   font-size: 1rem;
+  background-color: var(--color-green);
   color: var(--color-text);
 }
 
@@ -157,39 +159,6 @@ h3 {
     transform: none;
     max-width: rem-calc(512);
     font-size: rem-calc(24);
-  }
-}
-
-// -----------------------------------------------------------------------------
-// Hero Carousel
-// -----------------------------------------------------------------------------
-
-.section__carousel {
-  position: relative;
-  z-index: 1;
-
-  @media (min-width: $breakpoint-md) {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  
-    img {
-      visibility: hidden;
-    }
-  }
-}
-
-.BrainhubCarouselSlide {
-  display: none;
-  width: 100vw;
-  height: 85vh;
-  background-position: center bottom;
-  background-size: cover;
-
-  @media (min-width: $breakpoint-md) {
-    display: block;
   }
 }
 
@@ -298,3 +267,9 @@ h3 {
     }
   }
 }
+
+// -----------------------------------------------------------------------------
+// Carousel
+// -----------------------------------------------------------------------------
+
+@import 'carousel';
