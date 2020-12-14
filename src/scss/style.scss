@@ -169,6 +169,7 @@ h3 {
   @media (min-width: $breakpoint-md) {
     max-width: rem-calc(512);
     font-size: rem-calc(24);
+    margin-top: 0;
   }
 }
 
