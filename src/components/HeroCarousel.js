@@ -1,8 +1,8 @@
 import React from 'react'
-import SwiperCore, { EffectFade, Pagination, Autoplay } from 'swiper'
+import SwiperCore, { EffectFade, Pagination, Autoplay, Keyboard, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-SwiperCore.use([EffectFade, Pagination, Autoplay])
+SwiperCore.use([EffectFade, Pagination, Autoplay, Keyboard, A11y])
 
 class HeroCarousel extends React.Component {
   constructor(props) {
@@ -18,6 +18,7 @@ class HeroCarousel extends React.Component {
         <Swiper
           loop={true}
           effect="fade"
+          keyboard={{ enabled: true, onlyInViewport: false }}
           fadeEffect={{ crossFade: true }}
           autoplay={{ delay: 6000 }}
           pagination={{ clickable: true }}
