@@ -46,11 +46,11 @@ const SignupForm = ({ status, message, onValidated }) => {
   return (
     <ThemeProvider theme={theme}>
       <form className="form" onSubmit={formik.handleSubmit}>
+        <h3>Sign Up To Learn More</h3>
         <div className={`confirmation-message ${status === 'success' ? 'show' : 'hide'}`}>
-          <h3>Thank you for your interest in 57 Bank St.</h3>
+          <h4>Thank you for your interest in 57 Bank St.</h4>
           <p>We’ll notify you shortly.</p>
         </div>
-        <h3><a href="https://www.yardi.com/">Apply Now</a></h3>
         <div className="components">
           <div className="component">
             <label className="sr-only" htmlFor="name">Name</label>

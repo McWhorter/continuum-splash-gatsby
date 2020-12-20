@@ -29,7 +29,9 @@ $breakpoint-lg: rem-calc(992);
   --lineHeight-normal: 1.5;
   --spacing-1: #{rem-calc(24)};
   --spacing-2: #{rem-calc(44)};
-  --spacing-3: #{rem-calc(96)};
+  --spacing-3: #{rem-calc(54)};
+  --spacing-4: #{rem-calc(64)};
+  --spacing-5: #{rem-calc(96)};
 
   @media (min-width: 1366px) {
     --fontSize-root: 1.1713vw;
@@ -78,9 +80,14 @@ p {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   line-height: 1.25;
   font-family: var(--font-heading);
+}
+
+h1 {
+  letter-spacing: 0.01em;
 }
 
 h2 {
@@ -95,6 +102,12 @@ h2 {
 }
 
 h3 {
+  margin-top: 0;
+  margin-bottom: 1em;
+  font-size: rem-calc(18);
+}
+
+h4 {
   margin-top: 0;
   margin-bottom: 1em;
   font-size: rem-calc(13);
@@ -132,11 +145,22 @@ h3 {
   right: 0;
   padding-top: var(--spacing-1);
   background-color: var(--color-blue);
-  
+
   @media (min-width: $breakpoint-md) {
-    padding-top: var(--spacing-3);
+    padding-top: var(--spacing-4);
     padding-bottom: rem-calc(12);
     background-color: transparent;
+  }
+
+  .now-leasing {
+    margin-bottom: 1rem;
+    font-family: var(--font-heading);
+    font-size: rem-calc(18);
+    color: var(--color-cream);
+
+    @media (max-width: $breakpoint-md) {
+      display: none;
+    }
   }
 }
 
@@ -198,17 +222,18 @@ h3 {
 
 .signup {
   position: relative;
-  min-height: 19vh;
+  min-height: 15vh;
   padding: rem-calc(14 44 32);
   background-color: var(--color-blue);
   color: var(--color-cream);
   
   @media (min-width: $breakpoint-md) {
-    padding-top: rem-calc(28);
+    box-shadow: 0 -2.5rem 0 var(--color-blue);
     width: 65%;
   }
 
   @media (min-width: $breakpoint-lg) {
+    padding-bottom: 3rem;
     width: 52%;
   }
 }
@@ -258,6 +283,20 @@ h3 {
     height: rem-calc(11);
     padding-right: rem-calc(8);
   }
+
+  .icon {
+    margin-right: rem-calc(14);
+  }
+
+  .icon-equal-housing {
+    width: rem-calc(23);
+    height: rem-calc(16);
+  }
+
+  .icon-ada {
+    width: rem-calc(13);
+    height: rem-calc(16);
+  }
 }
 
 // -----------------------------------------------------------------------------
@@ -267,15 +306,7 @@ h3 {
 .form {
   h3 {
     margin-bottom: rem-calc(18);
-  }
-
-  a {
-    text-decoration: none;
-    color: var(--color-cream);
-
-    &:hover {
-      text-decoration: underline;
-    }
+    color: var(--color-gold);
   }
 
   .components {
@@ -359,12 +390,12 @@ h3 {
     opacity: 0;
     background-color: var(--color-blue);
 
-    h3,
+    h4,
     p {
       font-size: rem-calc(18);
     }
 
-    h3 {
+    h4 {
       margin-bottom: rem-calc(8);
     }
 
