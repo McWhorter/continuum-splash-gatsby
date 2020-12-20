@@ -72,6 +72,16 @@ module.exports = {
     // See https://www.gatsbyjs.com/plugins/gatsby-plugin-react-helmet/?=gatsby-plugin-react-helmet
     `gatsby-plugin-react-helmet`,
 
+    {
+      resolve: `gatsby-plugin-svg-spritemap`,
+      options: {
+        pattern: `./src/images/*.svg`,
+        output: {
+          filename: `spritemap.svg`,
+        },
+      },
+    },
+
     // {
     //   resolve: `gatsby-plugin-mailchimp`,
     //   options: {
